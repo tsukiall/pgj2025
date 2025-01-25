@@ -35,6 +35,15 @@ public partial class @CharacterActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Burst"",
+                    ""type"": ""Button"",
+                    ""id"": ""9c027f7b-60a7-491e-8303-3cf4133c2eab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -92,6 +101,17 @@ public partial class @CharacterActions : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a79f459-fb35-4bcc-b762-f36dd3f3ab54"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Burst"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +121,7 @@ public partial class @CharacterActions : IInputActionCollection2, IDisposable
         // Player_Map
         m_Player_Map = asset.FindActionMap("Player_Map", throwIfNotFound: true);
         m_Player_Map_Movement = m_Player_Map.FindAction("Movement", throwIfNotFound: true);
+        m_Player_Map_Burst = m_Player_Map.FindAction("Burst", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,11 +182,13 @@ public partial class @CharacterActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player_Map;
     private IPlayer_MapActions m_Player_MapActionsCallbackInterface;
     private readonly InputAction m_Player_Map_Movement;
+    private readonly InputAction m_Player_Map_Burst;
     public struct Player_MapActions
     {
         private @CharacterActions m_Wrapper;
         public Player_MapActions(@CharacterActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Map_Movement;
+        public InputAction @Burst => m_Wrapper.m_Player_Map_Burst;
         public InputActionMap Get() { return m_Wrapper.m_Player_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -178,6 +201,9 @@ public partial class @CharacterActions : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnMovement;
+                @Burst.started -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBurst;
+                @Burst.performed -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBurst;
+                @Burst.canceled -= m_Wrapper.m_Player_MapActionsCallbackInterface.OnBurst;
             }
             m_Wrapper.m_Player_MapActionsCallbackInterface = instance;
             if (instance != null)
@@ -185,6 +211,9 @@ public partial class @CharacterActions : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Burst.started += instance.OnBurst;
+                @Burst.performed += instance.OnBurst;
+                @Burst.canceled += instance.OnBurst;
             }
         }
     }
@@ -192,5 +221,6 @@ public partial class @CharacterActions : IInputActionCollection2, IDisposable
     public interface IPlayer_MapActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnBurst(InputAction.CallbackContext context);
     }
 }

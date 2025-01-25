@@ -5,11 +5,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField]
-    private float movementSpeed = 1.0f;
-    private CharacterActions characterActions;
+    private float passiveVelocity;
+
+    [SerializeField]
+    private float boostVelocity;
+
+    [SerializeField]
+    private float rotationSpeed;
+
+    [SerializeField]
+    private float terminalVelocity;
+
+    private Rigidbody rb;
     private Vector2 movementInput;
+    private CharacterActions characterActions;
+
+    private float ClampVelocity(float input) {
+        return Mathf.Clamp(input, -terminalVelocity - boostVelocity * Mathf.Clamp(movementInput.y, 0, 1), terminalVelocity + boostVelocity * Mathf.Clamp(movementInput.y, 0, 1));
+    }
 
     private void Awake() {
+        rb = GetComponent<Rigidbody>();
         characterActions = new CharacterActions();
     }
 
@@ -23,6 +39,10 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         movementInput = characterActions.Player_Map.Movement.ReadValue<Vector2>();
-        transform.position += new Vector3(movementInput.x, 0f, movementInput.y) * movementSpeed * Time.deltaTime;
+        rb.AddForce(transform.forward * passiveVelocity);
+        transform.Rotate(Vector3.up * rotationSpeed * movementInput.x);
+        rb.velocity = new Vector3(ClampVelocity(rb.velocity.x), 0f, ClampVelocity(rb.velocity.z));
+
+        rb.AddForce(transform.forward * boostVelocity * Mathf.Clamp(movementInput.y, 0, 1));
     }
 }
