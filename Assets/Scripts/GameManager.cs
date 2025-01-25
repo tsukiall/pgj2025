@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     private void Awake() {
         if (Instance == null) {
             Instance = this;
+
             DontDestroyOnLoad(gameObject); // Optional: Persist the manager between scenes
         } else {
             Destroy(gameObject);
@@ -33,16 +34,19 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public SmallObjective[] GetSmallObjectives() {
-        return objectives;
-    }
+     public SmallObjective[] GetSmallObjectives() {
+            return objectives;
+     }
 
-    public void ReducePlayerHealth() {
-        playerHealth -= 10; 
-        Debug.Log("Player Health: " + playerHealth);
+     public void ReducePlayerHealth()
+      {
+            playerHealth -= 10;
+            Debug.Log("Player Health: " + playerHealth);
 
-        if (playerHealth <= 0) {
-            Debug.Log("Player has died!");
-        }
-    }
+            if (playerHealth <= 0)
+            {
+                Debug.Log("Player has died!");
+
+            }
+      } 
 }

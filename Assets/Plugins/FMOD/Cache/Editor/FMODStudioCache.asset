@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8217466759417934172
+--- !u!114 &-6396860525131483350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,50 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: event:/Music
-  Guid:
-    Data1: -209837700
-    Data2: 1087638550
-    Data3: 582055615
-    Data4: 1901311864
-  Banks:
-  - {fileID: 9000148462002309527}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 1476300161963827829}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 53958
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: 7999726612082431377}
-  - {fileID: 9000148462002309527}
-  EditorEvents:
-  - {fileID: -8217466759417934172}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: 9000148462002309527}
-  StringsBanks:
-  - {fileID: 7999726612082431377}
-  cacheTime: 638734264648998297
-  cacheVersion: 131622
---- !u!114 &1476300161963827829
+  Path: Fmod/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638734299476498701
+  FileSizes:
+  - Name: Desktop
+    Value: 1283808
+  Exists: 1
+--- !u!114 &-4089872459597985004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,7 +44,59 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &7999726612082431377
+--- !u!114 &-2027481518610403995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music
+  Guid:
+    Data1: -209837700
+    Data2: 1087638550
+    Data3: 582055615
+    Data4: 1901311864
+  Banks:
+  - {fileID: -6396860525131483350}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -4089872459597985004}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 53958
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 5839201803053274561}
+  - {fileID: -6396860525131483350}
+  EditorEvents:
+  - {fileID: -2027481518610403995}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -6396860525131483350}
+  StringsBanks:
+  - {fileID: 5839201803053274561}
+  cacheTime: 638734299476518634
+  cacheVersion: 131622
+--- !u!114 &5839201803053274561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,28 +111,8 @@ MonoBehaviour:
   Path: Fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638734264648998297
+  lastModified: 638734299476518634
   FileSizes:
   - Name: Desktop
     Value: 802
-  Exists: 1
---- !u!114 &9000148462002309527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Fmod/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638734264648988291
-  FileSizes:
-  - Name: Desktop
-    Value: 1283808
   Exists: 1
