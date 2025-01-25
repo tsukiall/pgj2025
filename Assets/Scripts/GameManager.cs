@@ -13,9 +13,10 @@ public class GameManager : MonoBehaviour {
     private void Awake() {
         if (Instance == null) {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+
+            DontDestroyOnLoad(gameObject); // Optional: Persist the manager between scenes
         } else {
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
 
