@@ -664,6 +664,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8316216087359073106, guid: 2a117428d5f4cc644942171f4271616a, type: 3}
+      propertyPath: burstDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316216087359073106, guid: 2a117428d5f4cc644942171f4271616a, type: 3}
+      propertyPath: burstForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316216087359073106, guid: 2a117428d5f4cc644942171f4271616a, type: 3}
+      propertyPath: passiveVelocity
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8316216087359073119, guid: 2a117428d5f4cc644942171f4271616a, type: 3}
       propertyPath: m_Name
       value: Character
