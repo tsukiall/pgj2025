@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: aa6b798fdd4146648956a2aa8f8bd2c0
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Gismo-Trial
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 47b520e99b1a0874e9a3033f11eb63c7, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

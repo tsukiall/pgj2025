@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7514633416114702769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Start
+  m_EditorClassIdentifier: 
+  Path: event:/Start
+  Guid:
+    Data1: -1556339312
+    Data2: 1205802639
+    Data3: -224975994
+    Data4: 827721681
+  Banks:
+  - {fileID: -6396860525131483350}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-6396860525131483350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,10 +42,10 @@ MonoBehaviour:
   Path: Fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638734299476498701
+  lastModified: 638734362674457420
   FileSizes:
   - Name: Desktop
-    Value: 1283808
+    Value: 1315872
   Exists: 1
 --- !u!114 &-4089872459597985004
 MonoBehaviour:
@@ -71,7 +98,7 @@ MonoBehaviour:
   - {fileID: -4089872459597985004}
   MinDistance: 1
   MaxDistance: 20
-  Length: 53958
+  Length: 48020
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,12 +116,13 @@ MonoBehaviour:
   - {fileID: -6396860525131483350}
   EditorEvents:
   - {fileID: -2027481518610403995}
+  - {fileID: -7514633416114702769}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6396860525131483350}
   StringsBanks:
   - {fileID: 5839201803053274561}
-  cacheTime: 638734299476518634
+  cacheTime: 638734362674467426
   cacheVersion: 131622
 --- !u!114 &5839201803053274561
 MonoBehaviour:
@@ -111,8 +139,8 @@ MonoBehaviour:
   Path: Fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638734299476518634
+  lastModified: 638734362674467426
   FileSizes:
   - Name: Desktop
-    Value: 802
+    Value: 850
   Exists: 1

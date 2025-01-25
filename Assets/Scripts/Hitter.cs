@@ -6,7 +6,7 @@ public class Hitter : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 3f; // Speed of the blob
     [SerializeField]
-    private float turnSpeed = 2f; // Speed at which the blob can turn
+    private float turnSpeed = 0.5f; // Speed at which the blob can turn
 
     private Transform player; // Reference to the player's transform
     private bool isChasing = false; // Whether the blob is following the player
@@ -33,21 +33,35 @@ public class Hitter : MonoBehaviour
 
     private void FollowPlayer()
     {
-        // Get the current position of the blob (only X and Z for 2D movement)
-        Vector2 blobPosition = new Vector2(transform.position.x, transform.position.z);
-        Vector2 playerPosition = new Vector2(player.position.x, player.position.z);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null && player != null)
+        {
+            // Get the player's position in 2D (x, z plane)
+            Vector2 blobPosition = new Vector2(transform.position.x, transform.position.z);
+            Vector2 playerPosition = new Vector2(player.position.x, player.position.z);
 
-        // Calculate the direction toward the player
-        Vector2 direction = (playerPosition - blobPosition).normalized;
+            // Calculate the direction toward the player
+            Vector2 direction = (playerPosition - blobPosition).normalized;
 
-        // Smoothly rotate the blob toward the player
-        Vector3 targetDirection = new Vector3(direction.x, 0, direction.y);
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+            // Add force to move toward the player
+            rb.AddForce(new Vector3(direction.x, 0, direction.y) * moveSpeed);
 
-        // Move the blob forward in the direction it is facing
-        transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            // Smooth rotation
+            Vector3 targetDirection = new Vector3(direction.x, 0, direction.y);
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+
+            // Clamp velocity to ensure the Hitter doesn't exceed terminal speed
+            float boostVelocity = 0f; // Boost velocity if you want to add extra speed dynamically
+            float terminalVelocity = 10f; // Define terminal velocity
+            rb.velocity = new Vector3(
+                Mathf.Clamp(rb.velocity.x, -terminalVelocity - boostVelocity, terminalVelocity + boostVelocity),
+                rb.velocity.y, // Preserve Y velocity for gravity
+                Mathf.Clamp(rb.velocity.z, -terminalVelocity - boostVelocity, terminalVelocity + boostVelocity)
+            );
+        }
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
