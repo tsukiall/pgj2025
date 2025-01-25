@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class HomingBlob : MonoBehaviour
+public class Hitter : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 3f; // Speed of the blob
@@ -57,6 +57,7 @@ public class HomingBlob : MonoBehaviour
             isChasing = true;
             Debug.Log("Player entered detection range. Blob is chasing!");
         }
+      
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -72,7 +73,17 @@ public class HomingBlob : MonoBehaviour
             GameManager.Instance.ReducePlayerHealth();
 
             // Destroy the blob
+            //Destroy(gameObject);
+        }
+        else if (collision.collider.CompareTag("LightWall"))
+        {
+            Debug.Log("Player entered detection range. Blob is chasing!");
+
+        }
+        else if (collision.collider.CompareTag("DarkWall"))
+        {
             Destroy(gameObject);
+
         }
     }
 }

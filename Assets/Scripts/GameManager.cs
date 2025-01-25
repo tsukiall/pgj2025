@@ -13,16 +13,9 @@ public class GameManager : MonoBehaviour {
     private void Awake() {
         if (Instance == null) {
             Instance = this;
-<<<<<<< Updated upstream
-            DontDestroyOnLoad(gameObject); // Optional: Persist the manager between scenes
+            DontDestroyOnLoad(gameObject);
         } else {
-=======
-            DontDestroyOnLoad(gameObject); 
-        }
-        else
-        {
->>>>>>> Stashed changes
-            Destroy(gameObject);
+            Destroy(gameObject); 
         }
     }
 
@@ -40,20 +33,19 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-<<<<<<< Updated upstream
-    public SmallObjective[] GetSmallObjectives() {
-        return objectives; 
-=======
-    public void ReducePlayerHealth()
-    {
-        playerHealth -= 10; 
-        Debug.Log("Player Health: " + playerHealth);
+     public SmallObjective[] GetSmallObjectives() {
+            return objectives;
+     }
 
-        if (playerHealth <= 0)
-        {
-            Debug.Log("Player has died!");
-            
-        }
->>>>>>> Stashed changes
-    }
+     public void ReducePlayerHealth()
+      {
+            playerHealth -= 10;
+            Debug.Log("Player Health: " + playerHealth);
+
+            if (playerHealth <= 0)
+            {
+                Debug.Log("Player has died!");
+
+            }
+      } 
 }
