@@ -69,10 +69,10 @@ public class PlayerController : MonoBehaviour {
         movementInput = characterActions.Player_Map.Movement.ReadValue<Vector2>();
         transform.Rotate(Vector3.up * rotationSpeed * movementInput.x);
 
-        if (movementInput.x != 0) {
-            animator.SetBool("isTurning", true);
+        if (movementInput.x < 0) {
+            animator.SetFloat("isTurning", -1f);
         } else {
-            animator.SetBool("isTurning", false);
+            animator.SetFloat("isTurning", 1f);
         }
 
         if (!isBursting) {
