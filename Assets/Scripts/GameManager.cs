@@ -2,27 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
     private int objectiveCounter = 0; // Counter for collected small objectives
     public MainObjective mainObjective; // Reference to the main objective
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
+    private SmallObjective[] objectives;
+
+    private void Awake() {
+        if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject); // Optional: Persist the manager between scenes
-        }
-        else
-        {
+        } else {
             Destroy(gameObject);
         }
     }
 
-    public void IncrementCounter()
-    {
+    private void Start() {
+        objectives = GameObject.FindObjectsOfType<SmallObjective>();
+    }
+
+    public void IncrementCounter() {
         objectiveCounter++;
         Debug.Log("Small objectives collected: " + objectiveCounter);
 
@@ -30,5 +30,9 @@ public class GameManager : MonoBehaviour
         {
             mainObjective.Unlock();
         }
+    }
+
+    public SmallObjective[] GetSmallObjectives() {
+        return objectives; 
     }
 }

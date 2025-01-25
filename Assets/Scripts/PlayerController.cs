@@ -39,10 +39,8 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         movementInput = characterActions.Player_Map.Movement.ReadValue<Vector2>();
-        rb.AddForce(transform.forward * passiveVelocity);
+        rb.AddForce(transform.forward * (passiveVelocity + boostVelocity * Mathf.Clamp(movementInput.y, 0, 1)));
         transform.Rotate(Vector3.up * rotationSpeed * movementInput.x);
         rb.velocity = new Vector3(ClampVelocity(rb.velocity.x), 0f, ClampVelocity(rb.velocity.z));
-
-        rb.AddForce(transform.forward * boostVelocity * Mathf.Clamp(movementInput.y, 0, 1));
     }
 }
