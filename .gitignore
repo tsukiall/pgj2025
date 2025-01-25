@@ -51,6 +51,7 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
+*.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
@@ -75,4 +76,4 @@ crashlytics-build.properties
 #FMOD shit
 /[Aa]ssets/Plugins/FMOD/Cache
 
-fmod_editor.log
+**/fmod_editor.log
