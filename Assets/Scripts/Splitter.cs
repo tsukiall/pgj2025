@@ -1,26 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Hitter : MonoBehaviour
+public class Splitter : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 3f; // Speed of the blob
     [SerializeField]
     private float turnSpeed = 0.5f; // Speed at which the blob can turn
 
+    public int splitCount = 4; // Number of times the splitter can split
+
     private Transform player; // Reference to the player's transform
     private bool isChasing = false; // Whether the blob is following the player
-
-    void Start()
-    {
-        // Find the player by tag
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
-
-        if (player == null)
-        {
-            Debug.LogError("Player not found! Ensure the player has the tag 'Player'.");
-        }
-    }
 
     void Update()
     {
@@ -62,42 +54,48 @@ public class Hitter : MonoBehaviour
         }
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    // goes to the player 
+    void OnTriggerEnter(Collider other)
     {
-        // If the player enters the trigger, start chasing
         if (other.CompareTag("Player"))
         {
-            isChasing = true;
-            Debug.Log("Player entered detection range. Blob is chasing!");
+            // Start following the player
+            player = other.transform;
         }
-      
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Split()
     {
-        Debug.Log("Blob collider hit!");
+        if (splitCount <= 0) return; // Prevent infinite splitting
 
-        // If the blob's collider hits the player's collider, deal damage and destroy the blob
-        if (collision.collider.CompareTag("Player"))
+        // Create two smaller splitters
+        for (int i = 0; i < 2; i++)
         {
-            Debug.Log("Blob hit the player!");
+            // Create a new GameObject
+            GameObject smallerSplitter = new GameObject($"Splitter_{splitCount}_{i}");
+            smallerSplitter.transform.position = transform.position; // Start at the same position
+            smallerSplitter.transform.localScale = transform.localScale * 0.5f; // Scale down
+            smallerSplitter.transform.rotation = Quaternion.Euler(0, i * 180, 0); // Offset rotation
 
-            // Call GameManager to deal damage to the player
-            GameManager.Instance.ReducePlayerHealth();
+            // Add visual components (MeshFilter and MeshRenderer)
+            MeshFilter meshFilter = smallerSplitter.AddComponent<MeshFilter>();
+            MeshRenderer meshRenderer = smallerSplitter.AddComponent<MeshRenderer>();
 
-            // Destroy the blob
-            //Destroy(gameObject);
-        }
-        else if (collision.collider.CompareTag("LightWall"))
-        {
-            Debug.Log("Player entered detection range. Blob is chasing!");
+            // Copy mesh and material from the current splitter
+            meshFilter.mesh = GetComponent<MeshFilter>().mesh;
+            meshRenderer.material = GetComponent<MeshRenderer>().material;
 
-        }
-        else if (collision.collider.CompareTag("DarkWall"))
-        {
-            Destroy(gameObject);
+            // Add behavior components
+            Splitter splitterScript = smallerSplitter.AddComponent<Splitter>();
+            splitterScript.moveSpeed = moveSpeed * 2f; // Double the speed
+            splitterScript.splitCount = splitCount - 1; // Reduce split count
 
+            // Add Rigidbody and Collider
+            Rigidbody rb = smallerSplitter.AddComponent<Rigidbody>();
+            rb.useGravity = false;
+
+            SphereCollider collider = smallerSplitter.AddComponent<SphereCollider>();
+            collider.isTrigger = false; // Adjust based on your gameplay needs
         }
     }
 }

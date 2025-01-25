@@ -6,6 +6,9 @@ TagManager:
   tags:
   - LightWall
   - DarkWall
+  - Splitter
+  - Hitter
+  - Sticker
   layers:
   - Default
   - TransparentFX

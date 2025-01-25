@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Hitter : MonoBehaviour
+public class Sticker : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 3f; // Speed of the blob
@@ -10,17 +11,7 @@ public class Hitter : MonoBehaviour
 
     private Transform player; // Reference to the player's transform
     private bool isChasing = false; // Whether the blob is following the player
-
-    void Start()
-    {
-        // Find the player by tag
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
-
-        if (player == null)
-        {
-            Debug.LogError("Player not found! Ensure the player has the tag 'Player'.");
-        }
-    }
+    private bool isStuck = false; // Whether the sticker is stuck to the player
 
     void Update()
     {
@@ -33,6 +24,8 @@ public class Hitter : MonoBehaviour
 
     private void FollowPlayer()
     {
+        if (isStuck) return; // Stop moving if already stuck
+
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null && player != null)
         {
@@ -51,53 +44,46 @@ public class Hitter : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
 
-            // Clamp velocity to ensure the Hitter doesn't exceed terminal speed
-            float boostVelocity = 0f; // Boost velocity if you want to add extra speed dynamically
+            // Clamp velocity to ensure the Sticker doesn't exceed terminal speed
             float terminalVelocity = 10f; // Define terminal velocity
             rb.velocity = new Vector3(
-                Mathf.Clamp(rb.velocity.x, -terminalVelocity - boostVelocity, terminalVelocity + boostVelocity),
+                Mathf.Clamp(rb.velocity.x, -terminalVelocity, terminalVelocity),
                 rb.velocity.y, // Preserve Y velocity for gravity
-                Mathf.Clamp(rb.velocity.z, -terminalVelocity - boostVelocity, terminalVelocity + boostVelocity)
+                Mathf.Clamp(rb.velocity.z, -terminalVelocity, terminalVelocity)
             );
         }
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        // If the player enters the trigger, start chasing
         if (other.CompareTag("Player"))
         {
-            isChasing = true;
-            Debug.Log("Player entered detection range. Blob is chasing!");
+            // Start following the player
+            player = other.transform;
+            isChasing = true; // Set isChasing to true
         }
-      
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Stick(Transform playerMan)
     {
-        Debug.Log("Blob collider hit!");
-
-        // If the blob's collider hits the player's collider, deal damage and destroy the blob
-        if (collision.collider.CompareTag("Player"))
+        if (!isStuck)
         {
-            Debug.Log("Blob hit the player!");
+            // Stick to the player
+            isStuck = true;
+            isChasing = false; // Stop chasing
+            player = playerMan;
 
-            // Call GameManager to deal damage to the player
-            GameManager.Instance.ReducePlayerHealth();
+            // Slow down the player
+            Rigidbody playerRb = player.GetComponent<Rigidbody>();
+            if (playerRb != null)
+            {
+                // Reduce velocity by 5 units
+                Vector3 reducedVelocity = playerRb.velocity.normalized * Mathf.Max(0, playerRb.velocity.magnitude - 5);
+                playerRb.velocity = reducedVelocity;
+            }
 
-            // Destroy the blob
-            //Destroy(gameObject);
-        }
-        else if (collision.collider.CompareTag("LightWall"))
-        {
-            Debug.Log("Player entered detection range. Blob is chasing!");
-
-        }
-        else if (collision.collider.CompareTag("DarkWall"))
-        {
-            Destroy(gameObject);
-
+            // Parent the sticker to the player
+            transform.parent = player;
         }
     }
 }
