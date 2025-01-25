@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private IEnumerator Burst() {
+        rb.velocity = Vector3.zero;
         isBursting = true;
         Debug.Log("boop");
         yield return new WaitForSeconds(burstDelay);
@@ -46,6 +47,10 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         characterActions = new CharacterActions();
+        burst = characterActions.Player_Map.Burst;
+        burst.performed += (_) => {
+            StartCoroutine("Burst");
+        };
     }
 
     private void OnEnable() {
@@ -64,13 +69,9 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(transform.forward * (passiveVelocity + boostVelocity * Mathf.Clamp(movementInput.y, 0, 1)));
             rb.velocity = new Vector3(ClampVelocity(rb.velocity.x), 0f, ClampVelocity(rb.velocity.z));
         }
-
-        burst = characterActions.Player_Map.Burst;
-        if (burst.triggered) {
-            rb.velocity = Vector3.zero;
-            StartCoroutine("Burst");
-        }
     }
+
+    
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Hitter") && other.isTrigger == false) {
