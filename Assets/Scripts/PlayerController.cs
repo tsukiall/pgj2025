@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private IEnumerator Burst() {
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         isBursting = true;
         animator.SetBool("isBursting", true);
 
@@ -69,9 +69,15 @@ public class PlayerController : MonoBehaviour {
         movementInput = characterActions.Player_Map.Movement.ReadValue<Vector2>();
         transform.Rotate(Vector3.up * rotationSpeed * movementInput.x);
 
+        if (movementInput.x != 0) {
+            animator.SetBool("isTurning", true);
+        } else {
+            animator.SetBool("isTurning", false);
+        }
+
         if (!isBursting) {
             rb.AddForce(transform.forward * (passiveVelocity + boostVelocity * Mathf.Clamp(movementInput.y, 0, 1)));
-            rb.velocity = new Vector3(ClampVelocity(rb.velocity.x), 0f, ClampVelocity(rb.velocity.z));
+            rb.linearVelocity = new Vector3(ClampVelocity(rb.linearVelocity.x), 0f, ClampVelocity(rb.linearVelocity.z));
         }
     }
 

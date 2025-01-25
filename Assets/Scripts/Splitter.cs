@@ -46,10 +46,10 @@ public class Splitter : MonoBehaviour
             // Clamp velocity to ensure the Hitter doesn't exceed terminal speed
             float boostVelocity = 0f; // Boost velocity if you want to add extra speed dynamically
             float terminalVelocity = 10f; // Define terminal velocity
-            rb.velocity = new Vector3(
-                Mathf.Clamp(rb.velocity.x, -terminalVelocity - boostVelocity, terminalVelocity + boostVelocity),
-                rb.velocity.y, // Preserve Y velocity for gravity
-                Mathf.Clamp(rb.velocity.z, -terminalVelocity - boostVelocity, terminalVelocity + boostVelocity)
+            rb.linearVelocity = new Vector3(
+                Mathf.Clamp(rb.linearVelocity.x, -terminalVelocity - boostVelocity, terminalVelocity + boostVelocity),
+                rb.linearVelocity.y, // Preserve Y velocity for gravity
+                Mathf.Clamp(rb.linearVelocity.z, -terminalVelocity - boostVelocity, terminalVelocity + boostVelocity)
             );
         }
     }

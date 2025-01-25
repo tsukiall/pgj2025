@@ -46,10 +46,10 @@ public class Sticker : MonoBehaviour
 
             // Clamp velocity to ensure the Sticker doesn't exceed terminal speed
             float terminalVelocity = 10f; // Define terminal velocity
-            rb.velocity = new Vector3(
-                Mathf.Clamp(rb.velocity.x, -terminalVelocity, terminalVelocity),
-                rb.velocity.y, // Preserve Y velocity for gravity
-                Mathf.Clamp(rb.velocity.z, -terminalVelocity, terminalVelocity)
+            rb.linearVelocity = new Vector3(
+                Mathf.Clamp(rb.linearVelocity.x, -terminalVelocity, terminalVelocity),
+                rb.linearVelocity.y, // Preserve Y velocity for gravity
+                Mathf.Clamp(rb.linearVelocity.z, -terminalVelocity, terminalVelocity)
             );
         }
     }
@@ -78,8 +78,8 @@ public class Sticker : MonoBehaviour
             if (playerRb != null)
             {
                 // Reduce velocity by 5 units
-                Vector3 reducedVelocity = playerRb.velocity.normalized * Mathf.Max(0, playerRb.velocity.magnitude - 5);
-                playerRb.velocity = reducedVelocity;
+                Vector3 reducedVelocity = playerRb.linearVelocity.normalized * Mathf.Max(0, playerRb.linearVelocity.magnitude - 5);
+                playerRb.linearVelocity = reducedVelocity;
             }
 
             // Parent the sticker to the player
