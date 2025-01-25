@@ -128,6 +128,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8316216087359073104, guid: 2a117428d5f4cc644942171f4271616a, type: 3}
   m_PrefabInstance: {fileID: 8316216087499413080}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &921014451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505618093729106195, guid: 462b81d0a4b88b3488fcf074935493b3, type: 3}
+  m_PrefabInstance: {fileID: 4669689412176250365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &921014454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921014451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -209837700
+      Data2: 1087638550
+      Data3: 582055615
+      Data4: 1901311864
+    Path: event:/Music
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!1 &949870292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4216884256539177608, guid: 7149aa757e15f5c4b827c190a8c1b61b, type: 3}
+  m_PrefabInstance: {fileID: 4216884255972432245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &949870294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949870292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &952205459
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +492,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4216884256539177610, guid: 7149aa757e15f5c4b827c190a8c1b61b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7149aa757e15f5c4b827c190a8c1b61b, type: 3}
 --- !u!1001 &4669689412176250365
 PrefabInstance:
@@ -564,10 +620,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1244413915, guid: 2a117428d5f4cc644942171f4271616a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8316216087359073104, guid: 2a117428d5f4cc644942171f4271616a, type: 3}
       propertyPath: m_RootOrder
       value: 1
