@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
-    private int objectiveCounter = 0; // Counter for collected small objectives
-    public MainObjective mainObjective; // Reference to the main objective
+    private int objectiveCounter = 0; 
+    public MainObjective mainObjective; 
+    private int playerHealth = 100; 
 
     private SmallObjective[] objectives;
 
     private void Awake() {
         if (Instance == null) {
             Instance = this;
+<<<<<<< Updated upstream
             DontDestroyOnLoad(gameObject); // Optional: Persist the manager between scenes
         } else {
+=======
+            DontDestroyOnLoad(gameObject); 
+        }
+        else
+        {
+>>>>>>> Stashed changes
             Destroy(gameObject);
         }
     }
@@ -26,13 +34,26 @@ public class GameManager : MonoBehaviour {
         objectiveCounter++;
         Debug.Log("Small objectives collected: " + objectiveCounter);
 
-        if (objectiveCounter >= 3) // Unlock the main objective
+        if (objectiveCounter >= 3) 
         {
             mainObjective.Unlock();
         }
     }
 
+<<<<<<< Updated upstream
     public SmallObjective[] GetSmallObjectives() {
         return objectives; 
+=======
+    public void ReducePlayerHealth()
+    {
+        playerHealth -= 10; 
+        Debug.Log("Player Health: " + playerHealth);
+
+        if (playerHealth <= 0)
+        {
+            Debug.Log("Player has died!");
+            
+        }
+>>>>>>> Stashed changes
     }
 }
