@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody rb;
     private InputAction burst;
+    private Animator animator;
     private Vector2 movementInput;
     private bool isBursting = false;
     private CharacterActions characterActions;
@@ -37,15 +38,18 @@ public class PlayerController : MonoBehaviour {
     private IEnumerator Burst() {
         rb.velocity = Vector3.zero;
         isBursting = true;
-        Debug.Log("boop");
+        animator.SetBool("isBursting", true);
+
         yield return new WaitForSeconds(burstDelay);
-        Debug.Log("himom");
+
         rb.AddForce(transform.forward * burstForce, ForceMode.Impulse);
         isBursting = false;
+        animator.SetBool("isBursting", false);
     }
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
         characterActions = new CharacterActions();
         burst = characterActions.Player_Map.Burst;
         burst.performed += (_) => {
