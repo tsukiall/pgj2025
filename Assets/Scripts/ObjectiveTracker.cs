@@ -15,29 +15,33 @@ public class ObjectiveTracker : MonoBehaviour {
     private Image left;
 
     private Transform player;
-    private GameManager gameManager;
     private float closestPickupDistance;
-    private SmallObjective closestPickup;
+    private ObjectiveController closestPickup;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
     }
 
     private void Update() {
         transform.position = player.position;
 
-        foreach (SmallObjective objective in gameManager.GetSmallObjectives()) {
-            float pickupDistance = (objective.transform.position - transform.position).sqrMagnitude;
+        if (GameManager.Instance.GetSmallObjectives().Count > 0) {
+            foreach (SmallObjective objective in GameManager.Instance.GetSmallObjectives()) {
+                float pickupDistance = (objective.transform.position - transform.position).sqrMagnitude;
 
-            if (closestPickup == null || pickupDistance <= closestPickupDistance) {
-                closestPickup = objective;
-            }
+                if (closestPickup == null || pickupDistance <= closestPickupDistance) {
+                    closestPickup = objective;
+                }
 
-            if (objective == closestPickup) {
-                closestPickupDistance = pickupDistance;
+                if (objective == closestPickup) {
+                    closestPickupDistance = pickupDistance;
+                }
             }
+        } else {
+            closestPickup = GameObject.FindGameObjectWithTag("MainObjective").GetComponent<MainObjective>();
+            closestPickupDistance = (closestPickup.transform.position - transform.position).sqrMagnitude;
         }
+
 
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(closestPickup.transform.position - transform.position), Time.deltaTime * rotation);
         right.fillAmount = 0.7f - closestPickupDistance * distanceScale;
