@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2665037831338817052}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 8316216087359073119}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -137,7 +137,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &8316216087359073106
 MonoBehaviour:
@@ -151,11 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c951fb2af1cbecf4ab9cf373d9b3ab49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passiveVelocity: 15
-  boostVelocity: 15
+  passiveVelocity: 5
+  boostVelocity: 5
   rotationSpeed: 5
-  terminalVelocity: 15
-  burstDelay: 0.3
+  terminalVelocity: 5
+  burstDelay: 0.25
   burstForce: 5
 --- !u!1 &8799927499223337651
 GameObject:
