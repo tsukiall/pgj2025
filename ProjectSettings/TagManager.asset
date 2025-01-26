@@ -7,9 +7,8 @@ TagManager:
   - LightWall
   - DarkWall
   - Splitter
-  - Hitter
-  - Sticker
   - MainObjective
+  - Enemy
   layers:
   - Default
   - TransparentFX

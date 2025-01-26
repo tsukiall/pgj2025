@@ -27,10 +27,9 @@ public class PlayerController : MonoBehaviour {
     private Animator animator;
     private Vector2 movementInput;
     private bool isBursting = false;
+    private bool hasAttacked = false;
 
     public CharacterActions characterActions;
-
-    private Splitter splitter;
 
     private float ClampVelocity(float input) {
         return Mathf.Clamp(input, -terminalVelocity - boostVelocity * Mathf.Clamp(movementInput.y, 0, 1), terminalVelocity + boostVelocity * Mathf.Clamp(movementInput.y, 0, 1));
@@ -46,6 +45,14 @@ public class PlayerController : MonoBehaviour {
         rb.AddForce(transform.forward * burstForce, ForceMode.Impulse);
         isBursting = false;
         animator.SetBool("isBursting", false);
+    }
+
+    private IEnumerator Cooldown() {
+        hasAttacked = true;
+
+        yield return new WaitForSeconds(2);
+
+        hasAttacked = false;
     }
 
     private void Awake() {
@@ -86,33 +93,14 @@ public class PlayerController : MonoBehaviour {
     
 
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Hitter") && other.isTrigger == false) {
-            //Destroy(other.gameObject);
-        } else if (other.CompareTag("Splitter") && other.isTrigger == false) {
-            splitter = other.gameObject.GetComponent<Splitter>();
-            
-            if (splitter != null) {
-                if (splitter.splitCount > 0) {
-                    splitter.Split();
-                } else {
-                    //Destroy(other.gameObject);
-                }
-            }
-        } else if (other.CompareTag("Sticker") && other.isTrigger == false) {
-            //Destroy(other.gameObject);
+        if (other.CompareTag("Enemy") && other.isTrigger == false && !hasAttacked) {
+            rb.AddForce(-transform.forward * 5f);
+            StartCoroutine("Cooldown");
+            other.GetComponent<Enemy>().Hit();
         }
     }
 
-
     private void OnCollisionEnter(Collision collision) {
-
         animator.SetTrigger("isHit");
-
-        if (collision.collider.CompareTag("Sticker")) {
-            Sticker sticker = collision.collider.gameObject.GetComponent<Sticker>();
-            if (sticker != null) {
-                sticker.Stick(transform);
-            }
-        }
     }
 }
