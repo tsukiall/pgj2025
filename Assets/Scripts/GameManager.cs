@@ -3,6 +3,7 @@ using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
@@ -11,7 +12,9 @@ public class GameManager : MonoBehaviour {
     public MainObjective mainObjective; 
     private int playerHealth = 100; 
 
-    private SmallObjective[] objectives;
+    private List<SmallObjective> objectives;
+
+    public UnityEvent burstEvent;
 
     private void Awake() {
         if (Instance == null) {
@@ -24,19 +27,19 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
-        objectives = GameObject.FindObjectsOfType<SmallObjective>();
+        objectives = new List<SmallObjective>(FindObjectsOfType<SmallObjective>());
     }
 
-    public void IncrementCounter() {
+    public void IncrementCounter(SmallObjective objective) {
         objectiveCounter++;
-        Debug.Log("Small objectives collected: " + objectiveCounter);
+        objectives.Remove(objective);
 
         if (objectiveCounter >= 3) {
             mainObjective.Unlock();
         }
     }
 
-    public SmallObjective[] GetSmallObjectives() {
+    public List<SmallObjective> GetSmallObjectives() {
         return objectives;
     }
 
