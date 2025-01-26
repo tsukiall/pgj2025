@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
 
     private List<SmallObjective> objectives;
 
+    private int insanity = 0;
+
     public UnityEvent burstEvent;
 
     private void Awake() {
@@ -28,6 +30,10 @@ public class GameManager : MonoBehaviour {
 
     private void Start() {
         objectives = new List<SmallObjective>(FindObjectsOfType<SmallObjective>());
+
+        if (SceneManager.GetActiveScene().name == "Level 1") {
+            StartCoroutine("Timer");
+        }
     }
 
     public void IncrementCounter(SmallObjective objective) {
@@ -55,5 +61,13 @@ public class GameManager : MonoBehaviour {
     public void StartLevel() {
         GetComponent<StudioEventEmitter>().SetParameter("inGame", 1);
         SceneManager.LoadScene("Level 1");
+    }
+
+    private IEnumerator Timer() {
+        while (insanity < 100) {
+            yield return new WaitForSeconds(3f);
+            insanity++;
+            GetComponent<StudioEventEmitter>().SetParameter("insanity", insanity);
+        }
     }
 }

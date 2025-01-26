@@ -19,8 +19,6 @@ public class MainMenuController : MonoBehaviour {
     private GameManager gameManager;
 
     private void Start() {
-        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-
         creditsButton.onClick.AddListener(() => {
             mainMenu.SetActive(false);
             credits.SetActive(true);
@@ -31,7 +29,7 @@ public class MainMenuController : MonoBehaviour {
         });
 
         startButton.onClick.AddListener(() => {
-            gameManager.StartLevel();
+            GameManager.Instance.StartLevel();
         });
     }
 }
