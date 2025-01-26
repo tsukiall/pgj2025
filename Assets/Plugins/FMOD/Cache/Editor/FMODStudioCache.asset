@@ -1,32 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7514633416114702769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Start
-  m_EditorClassIdentifier: 
-  Path: event:/Start
-  Guid:
-    Data1: -1556339312
-    Data2: 1205802639
-    Data3: -224975994
-    Data4: 827721681
-  Banks:
-  - {fileID: -6396860525131483350}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
 --- !u!114 &-6396860525131483350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,11 +15,38 @@ MonoBehaviour:
   Path: Fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638734362674457420
+  lastModified: 638734874322070548
   FileSizes:
   - Name: Desktop
-    Value: 1315872
+    Value: 1434528
   Exists: 1
+--- !u!114 &-4130050120331985701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CollectGuitar
+  m_EditorClassIdentifier: 
+  Path: event:/CollectGuitar
+  Guid:
+    Data1: -1339844234
+    Data2: 1264631888
+    Data3: 598050722
+    Data4: -59954101
+  Banks:
+  - {fileID: -6396860525131483350}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7471
 --- !u!114 &-4089872459597985004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,9 +96,37 @@ MonoBehaviour:
   IsOneShot: 0
   Parameters:
   - {fileID: -4089872459597985004}
+  - {fileID: 3145268364336304709}
   MinDistance: 1
   MaxDistance: 20
   Length: 48020
+--- !u!114 &-2011326947411490288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CollectMirror
+  m_EditorClassIdentifier: 
+  Path: event:/CollectMirror
+  Guid:
+    Data1: 1251066316
+    Data2: 1325609665
+    Data3: 363783336
+    Data4: 770544986
+  Banks:
+  - {fileID: -6396860525131483350}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7471
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,14 +144,67 @@ MonoBehaviour:
   - {fileID: -6396860525131483350}
   EditorEvents:
   - {fileID: -2027481518610403995}
-  - {fileID: -7514633416114702769}
+  - {fileID: -4130050120331985701}
+  - {fileID: -2011326947411490288}
+  - {fileID: 4669566880704826823}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6396860525131483350}
   StringsBanks:
   - {fileID: 5839201803053274561}
-  cacheTime: 638734362674467426
+  cacheTime: 638734874322090619
   cacheVersion: 131622
+--- !u!114 &3145268364336304709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/insanity
+  m_EditorClassIdentifier: 
+  Name: insanity
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 1564035050
+    data2: 362542014
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &4669566880704826823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CollectWatch
+  m_EditorClassIdentifier: 
+  Path: event:/CollectWatch
+  Guid:
+    Data1: -615021613
+    Data2: 1112626250
+    Data3: -1222486090
+    Data4: -77978332
+  Banks:
+  - {fileID: -6396860525131483350}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7471
 --- !u!114 &5839201803053274561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,8 +220,8 @@ MonoBehaviour:
   Path: Fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638734362674467426
+  lastModified: 638734874322090619
   FileSizes:
   - Name: Desktop
-    Value: 850
+    Value: 992
   Exists: 1
