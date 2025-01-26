@@ -110,6 +110,8 @@ public class PlayerController : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         Debug.Log("Collision detected!");
 
+        animator.SetTrigger("isHit");
+
         // If the player's collider hits a Sticker
         if (collision.collider.CompareTag("Sticker")) {
             // Get the Sticker component from the collided object
