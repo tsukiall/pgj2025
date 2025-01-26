@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour {
     private Animator animator;
     private Vector2 movementInput;
     private bool isBursting = false;
-    private CharacterActions characterActions;
+
+    public CharacterActions characterActions;
 
     private Splitter splitter;
 
