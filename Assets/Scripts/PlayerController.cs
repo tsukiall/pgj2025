@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
     private IEnumerator Cooldown() {
         hasAttacked = true;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1f);
 
         hasAttacked = false;
     }

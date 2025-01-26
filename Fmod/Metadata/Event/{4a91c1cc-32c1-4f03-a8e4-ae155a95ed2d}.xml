@@ -66,6 +66,12 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{4e2272ba-1376-4379-b5dd-7618dbd1fc41}">
+		<property name="volume">
+			<value>6</value>
+		</property>
+		<relationship name="automators">
+			<destination>{558c08f6-1b13-4fcc-a8bd-b1ae14877298}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{2d708b54-916b-4934-a3fc-6266a6959ce1}</destination>
 		</relationship>
@@ -77,6 +83,9 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{fab5142d-aac2-4808-85d3-8715fa82b1f5}">
+		<property name="start">
+			<value>1</value>
+		</property>
 		<property name="length">
 			<value>3.4717460317460316</value>
 		</property>
@@ -86,7 +95,7 @@
 	</object>
 	<object class="SingleSound" id="{dd4ef91b-8ac9-4543-b5cd-0fa5d988de2b}">
 		<property name="start">
-			<value>4</value>
+			<value>5</value>
 		</property>
 		<property name="length">
 			<value>3.4717460317460316</value>
@@ -101,6 +110,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0d9f3446-3ee9-4671-92fa-1172f5904ceb}" />
+	<object class="Automator" id="{558c08f6-1b13-4fcc-a8bd-b1ae14877298}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>volume</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{2d708b54-916b-4934-a3fc-6266a6959ce1}">
 		<relationship name="effects">
 			<destination>{38594000-1039-472e-a863-b4d0aeaddf17}</destination>

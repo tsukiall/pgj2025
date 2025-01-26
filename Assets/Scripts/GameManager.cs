@@ -7,33 +7,35 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
+    public UnityEvent burstEvent;
     public static GameManager Instance { get; private set; }
-    private int objectiveCounter = 0; 
-    public MainObjective mainObjective; 
-    private int playerHealth = 100; 
-
-    private List<SmallObjective> objectives;
 
     private int insanity = 0;
+    private int playerHealth = 100; 
+    private int objectiveCounter = 0;
+    private MainObjective mainObjective;
+    private List<SmallObjective> objectives;
 
-    public UnityEvent burstEvent;
 
     private void Awake() {
         if (Instance == null) {
             Instance = this;
 
-            DontDestroyOnLoad(gameObject); // Optional: Persist the manager between scenes
+            DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
         }
     }
 
     private void Start() {
-        objectives = new List<SmallObjective>(FindObjectsOfType<SmallObjective>());
+        SceneManager.activeSceneChanged += (_, next) => {
+            objectives = new List<SmallObjective>(FindObjectsOfType<SmallObjective>());
+            mainObjective = GameObject.FindGameObjectWithTag("MainObjective").GetComponent<MainObjective>();
 
-        if (SceneManager.GetActiveScene().name == "Level 1") {
-            StartCoroutine("Timer");
-        }
+            if (SceneManager.GetActiveScene().name == next.name) {
+                StartCoroutine("Timer");
+            }
+        };
     }
 
     public void IncrementCounter(SmallObjective objective) {
